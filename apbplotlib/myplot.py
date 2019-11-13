@@ -4,7 +4,7 @@ import numpy as np
 
 import calendar
 
-def ax_add_colorbar(im, aspect=20, pad_fraction=0.5, **kwargs):
+def ax_add_colorbar(im, aspect=20., pad_fraction=0.05, **kwargs):
     """Add a vertical color bar to an image plot."""
     divider = axes_grid1.make_axes_locatable(im.axes)
     width = axes_grid1.axes_size.AxesY(im.axes, aspect=1./aspect)
@@ -16,7 +16,7 @@ def ax_add_colorbar(im, aspect=20, pad_fraction=0.5, **kwargs):
 
 def hovmoller(x, y, z, cmap=None, norm=None, add_colorbar=False, ax=None, title=None, 
               units=None, cb_extend='neither', cb_units_fontsize=20, cb_label_fontsize=15,
-              label_fontsize=15, title_fontsize=25, xlim=None):
+              label_fontsize=15, title_fontsize=25, xlim=None, aspect=1.):
     """
     Plots a Hovmoller for an array
     
@@ -26,6 +26,8 @@ def hovmoller(x, y, z, cmap=None, norm=None, add_colorbar=False, ax=None, title=
     y - y-axis values for plot (month)
     z - values for hovmoller
     """
+
+    print (ax)
     
     ny, nx = z.shape
     
@@ -33,12 +35,15 @@ def hovmoller(x, y, z, cmap=None, norm=None, add_colorbar=False, ax=None, title=
         ax = plt.subplot(111)
 
     extent = [x.min()-0.5, x.max()+0.5, y.min()-0.5, y.max()+0.5]
-    im = ax.imshow(z, cmap=cmap, norm=norm, extent=extent, origin='lower')
-    
+    im = ax.imshow(z, cmap=cmap, norm=norm, extent=extent, origin='lower', aspect=aspect)
+
     if add_colorbar:
-        cbar = ax_add_colorbar(im, pad_fraction=1.) #plt.colorbar(im, ax=ax, extend=cb_extend)
+        #cbar = plt.colorbar(im, ax=ax, extend=cb_extend)
+        cbar = ax_add_colorbar(im, pad_fraction=1.)
+        #divider = axes_grid1.make_axes_locatable(ax)
+        #cax = divider.append_axes("right", size="1%", pad=0.05)
+        #cbar = plt.colorbar(im, cax=cax)
         cbar.ax.tick_params(labelsize=cb_label_fontsize)
-        #cbar.ax.set_yticklabels(cbar.ax.get_yticklabels(), fontsize=cb_label_fontsize)
         if units: cbar.ax.set_ylabel(units, fontsize=cb_units_fontsize)
 
     ylabels = [calendar.month_abbr[i].upper() for i in y]
@@ -47,9 +52,6 @@ def hovmoller(x, y, z, cmap=None, norm=None, add_colorbar=False, ax=None, title=
     ax.set_yticklabels(ylabels, fontsize=label_fontsize)
 
     ax.tick_params(labelsize=label_fontsize)
-    #xt = np.arange(0,nx,5)
-    #ax.set_xticks(xt)
-    #ax.set_xticklabels(x[xt], fontsize=label_fontsize)
 
     if xlim:
         ax.set_xlim(xlim)
