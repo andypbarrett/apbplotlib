@@ -1,3 +1,6 @@
+import cartopy.crs as ccrs
+
+
 # projection class
 class EASE_North(ccrs.Projection):
     '''Projection class for NSIDC EASE grid north'''
