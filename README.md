@@ -32,9 +32,9 @@ $ python setup.py install --force
 ```
 This will force installed files to be overwritten
 
-Andy P. Barrett
-<apbarret@nsidc.org>
-https://github.com/andypbarrett
+Andy P. Barrett  
+<apbarret@nsidc.org>  
+https://github.com/andypbarrett  
 
 
 
