@@ -1,5 +1,6 @@
 # Utilities and color maps for plotting
 
+# Colours from https://s-rip.ees.hokudai.ac.jp/mediawiki/index.php/Notes_for_Authors
 reanalysis_color = {
     'MERRA2'  :'#e21f26',
     'MERRA'   :'#f69999',
