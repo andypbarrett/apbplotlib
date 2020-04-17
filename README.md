@@ -32,6 +32,11 @@ $ python setup.py install --force
 ```
 This will force installed files to be overwritten
 
+An easier method is to install directly from Github
+```
+$ pip install git+https://github.com/andypbarrett/apbplotlib
+```
+
 Andy P. Barrett  
 <apbarret@nsidc.org>  
 https://github.com/andypbarrett  
