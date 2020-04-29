@@ -40,11 +40,11 @@ class EASE2_North(ccrs.Projection):
 
     @property
     def x_limits(self):
-        return (None, None)
+        return (-4500000.0, 4500000.0)
 
     @property
     def y_limits(self):
-        return (None, None)
+        return (-4500000.0, 4500000.0)
 
     def describe(self):
         for k, v in vars(self).items():
